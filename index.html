@@ -1,0 +1,1907 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Print Media — Рекламное агентство</title>
+
+  <style>
+    :root {
+      --bg: #050509;
+      --bg-alt: #0b0b12;
+      --accent: #ff2d92;
+      --accent-2: #3ab8ff;
+      --text: #f5f5f7;
+      --muted: #a0a0b5;
+      --card: #151521;
+      --border: #26263a;
+      --radius-lg: 18px;
+      --radius-xl: 26px;
+      --shadow-soft: 0 24px 60px rgba(0, 0, 0, 0.65);
+      --shadow-glow: 0 0 40px rgba(255, 45, 146, 0.4);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        Roboto, sans-serif;
+      background: radial-gradient(circle at top, #18182a 0, #050509 55%);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    /* HEADER */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: linear-gradient(
+        to bottom,
+        rgba(5, 5, 9, 0.96),
+        rgba(5, 5, 9, 0.82),
+        rgba(5, 5, 9, 0)
+      );
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+      gap: 16px;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-img {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      object-fit: contain;
+      background: radial-gradient(circle at 20% 0, #ffffff 0, #ff2d92 36%, #3ab8ff 100%);
+      box-shadow: 0 0 26px rgba(255, 45, 146, 0.8);
+      padding: 4px;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .logo-title {
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .logo-subtitle {
+      font-size: 11px;
+      text-transform: uppercase;
+      color: var(--muted);
+      letter-spacing: 0.16em;
+    }
+
+    .nav-center {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex: 1;
+      justify-content: center;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .nav-links a {
+      position: relative;
+      padding-bottom: 3px;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      transition: width 0.25s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: radial-gradient(circle at 0 0, rgba(255, 45, 146, 0.26), transparent 55%);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      cursor: pointer;
+      transition: transform 0.12s ease, box-shadow 0.12s ease,
+        border-color 0.12s ease, background 0.14s ease;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .nav-cta span {
+      font-size: 16px;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-glow);
+      border-color: rgba(255, 255, 255, 0.32);
+    }
+
+    .burger {
+      display: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      align-items: center;
+      justify-content: center;
+      background: rgba(9, 9, 19, 0.9);
+      cursor: pointer;
+    }
+
+    .burger-line {
+      width: 16px;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--text);
+      position: relative;
+    }
+
+    .burger-line::before,
+    .burger-line::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 16px;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--text);
+    }
+
+    .burger-line::before {
+      top: -5px;
+    }
+
+    .burger-line::after {
+      top: 5px;
+    }
+
+    /* LANG SWITCH */
+
+    .lang-switch {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .lang-btn {
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      background: rgba(5, 5, 12, 0.8);
+      color: var(--muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      cursor: pointer;
+      transition: 0.16s ease;
+    }
+
+    .lang-btn:hover {
+      border-color: var(--accent-2);
+      color: var(--text);
+    }
+
+    .lang-btn.active {
+      border-color: var(--accent-2);
+      background: radial-gradient(circle at 0 0, rgba(58, 184, 255, 0.3), transparent 60%);
+      color: var(--text);
+    }
+
+    /* HERO */
+
+    .hero {
+      padding: 52px 0 60px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: radial-gradient(circle at 0 0, rgba(255, 45, 146, 0.36), transparent 55%);
+      margin-bottom: 18px;
+    }
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #2dff87;
+      box-shadow: 0 0 18px rgba(45, 255, 135, 0.8);
+    }
+
+    .hero-title {
+      font-size: clamp(32px, 4vw, 42px);
+      line-height: 1.1;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .hero-title span {
+      background: linear-gradient(120deg, #ff2d92, #ffd966, #3ab8ff);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-sub {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--muted);
+      max-width: 520px;
+      margin-bottom: 26px;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 22px;
+    }
+
+    .btn-primary {
+      padding: 12px 26px;
+      border-radius: 999px;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: radial-gradient(circle at 0 0, #ffd966, #ff2d92);
+      color: #050509;
+      box-shadow: var(--shadow-glow);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: transform 0.12s ease, box-shadow 0.12s ease,
+        filter 0.12s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.05);
+      box-shadow: 0 0 60px rgba(255, 45, 146, 0.7);
+    }
+
+    .btn-secondary {
+      padding: 11px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: rgba(9, 9, 18, 0.7);
+      color: var(--muted);
+      font-size: 13px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: border-color 0.12s ease, color 0.12s ease,
+        background 0.12s ease;
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(255, 255, 255, 0.4);
+      color: var(--text);
+      background: rgba(15, 15, 26, 0.9);
+    }
+
+    .hero-note {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .hero-note strong {
+      color: var(--accent-2);
+      font-weight: 600;
+    }
+
+    .hero-card {
+      border-radius: var(--radius-xl);
+      padding: 20px 20px 18px;
+      background:
+        radial-gradient(circle at 0 0, rgba(255, 45, 146, 0.35), transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(58, 184, 255, 0.3), transparent 55%),
+        var(--card);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card-tag {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .hero-card-main {
+      font-size: 15px;
+      margin-bottom: 16px;
+    }
+
+    .hero-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .pill {
+      font-size: 11px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      background: rgba(5, 5, 10, 0.4);
+      backdrop-filter: blur(10px);
+      white-space: nowrap;
+    }
+
+    .hero-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: var(--muted);
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .hero-meta strong {
+      color: var(--text);
+    }
+
+    .hero-float {
+      position: absolute;
+      right: -16px;
+      bottom: -24px;
+      width: 160px;
+      height: 160px;
+      border-radius: 32px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: radial-gradient(circle at 20% 0, #ffffff 0, #ff2d92 36%, #3ab8ff 100%);
+      opacity: 0.8;
+      filter: blur(0.3px);
+      box-shadow: 0 0 80px rgba(255, 45, 146, 0.8);
+    }
+
+    /* GENERIC SECTIONS */
+
+    section {
+      padding: 40px 0;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+
+    .section-title {
+      font-size: 22px;
+      font-weight: 600;
+    }
+
+    .section-title span {
+      color: var(--accent-2);
+    }
+
+    .section-sub {
+      font-size: 13px;
+      color: var(--muted);
+      max-width: 420px;
+    }
+
+    /* SERVICE BLOCKS */
+
+    .service-block {
+      border-radius: var(--radius-xl);
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      padding: 22px 20px 20px;
+      box-shadow: var(--shadow-soft);
+      margin-bottom: 26px;
+    }
+
+    .service-layout {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 22px;
+      align-items: start;
+    }
+
+    .service-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .service-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .service-text {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 10px;
+    }
+
+    .list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .list-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .list-bullet {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      margin-top: 5px;
+      background: radial-gradient(circle, var(--accent), var(--accent-2));
+      box-shadow: 0 0 12px rgba(255, 45, 146, 0.7);
+    }
+
+    .service-highlight {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
+    .service-highlight strong {
+      color: var(--accent-2);
+    }
+
+    /* SERVICE IMAGES */
+
+    .service-media {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .service-main-image {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      box-shadow: var(--shadow-soft);
+      background: radial-gradient(circle at 0 0, rgba(255, 45, 146, 0.4), transparent 60%);
+      min-height: 170px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px;
+    }
+
+    .service-main-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+
+    .service-main-caption {
+      position: absolute;
+      left: 10px;
+      bottom: 10px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(5, 5, 10, 0.78);
+      color: var(--muted);
+      font-size: 11px;
+      backdrop-filter: blur(8px);
+    }
+
+    .service-gallery {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .service-thumb {
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: radial-gradient(circle at 0 0, rgba(58, 184, 255, 0.28), transparent 60%);
+      min-height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      color: rgba(245, 245, 247, 0.7);
+      text-align: center;
+      padding: 6px;
+    }
+
+    .service-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* FACTS */
+
+    .facts-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .fact-card {
+      border-radius: var(--radius-lg);
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      padding: 14px 14px 12px;
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.46);
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .fact-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+
+    .fact-tag {
+      display: inline-block;
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      margin-bottom: 4px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+
+    /* PORTFOLIO SMALL GRID */
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .portfolio-item {
+      border-radius: var(--radius-lg);
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      padding: 14px 14px 12px;
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.46);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .portfolio-thumb {
+      border-radius: 14px;
+      background: radial-gradient(circle at 0 0, rgba(255, 45, 146, 0.4), transparent 55%);
+      min-height: 110px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: rgba(245, 245, 247, 0.7);
+      text-align: center;
+      padding: 10px;
+      border: 1px dashed rgba(255, 255, 255, 0.18);
+    }
+
+    .portfolio-title {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .portfolio-type {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+    }
+
+    .portfolio-text {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* CONTACT */
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 26px;
+      align-items: start;
+    }
+
+    .contact-card {
+      border-radius: var(--radius-xl);
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      padding: 18px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .contact-row {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .contact-row strong {
+      color: var(--text);
+    }
+
+    form {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    label {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 3px;
+      display: inline-block;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 9px 11px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: rgba(5, 5, 12, 0.94);
+      color: var(--text);
+      font-size: 13px;
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease,
+        background 0.15s ease;
+      resize: vertical;
+      min-height: 40px;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: rgba(160, 160, 181, 0.75);
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: var(--accent-2);
+      box-shadow: 0 0 0 1px rgba(58, 184, 255, 0.5);
+      background: rgba(9, 9, 18, 0.96);
+    }
+
+    .form-hint {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 18px 0 22px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      text-decoration: underline;
+      text-decoration-style: dotted;
+      text-underline-offset: 3px;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 950px) {
+      .hero-grid,
+      .service-layout,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 34px;
+      }
+
+      .hero-card {
+        order: -1;
+      }
+
+      .hero-float {
+        display: none;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .facts-grid,
+      .portfolio-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .nav-center {
+        justify-content: flex-end;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav {
+        justify-content: space-between;
+      }
+
+      .nav-center {
+        justify-content: flex-end;
+        gap: 10px;
+      }
+
+      .nav-links {
+        position: absolute;
+        inset: 60px 16px auto 16px;
+        padding: 14px;
+        border-radius: 16px;
+        flex-direction: column;
+        align-items: flex-start;
+        background: rgba(5, 5, 12, 0.98);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+        transform-origin: top;
+        transform: scaleY(0.6);
+        opacity: 0;
+        pointer-events: none;
+        transition: transform 0.14s ease, opacity 0.14s ease;
+      }
+
+      .nav-links.show {
+        opacity: 1;
+        transform: scaleY(1);
+        pointer-events: auto;
+      }
+
+      .nav-cta {
+        display: none;
+      }
+
+      .burger {
+        display: inline-flex;
+      }
+
+      .facts-grid,
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <nav class="nav">
+        <a href="#top" class="logo">
+          <img src="img/printmedia-logo.png" alt="Print Media" class="logo-img" />
+          <div class="logo-text">
+            <div class="logo-title">Print Media</div>
+            <div class="logo-subtitle">Outdoor · Polygraphy · LED</div>
+          </div>
+        </a>
+
+        <div class="nav-center">
+          <div class="nav-links" id="navLinks">
+            <a href="#services" data-i18n="nav_services">Услуги</a>
+            <a href="#portfolio" data-i18n="nav_portfolio">Портфолио</a>
+            <a href="#facts" data-i18n="nav_facts">Факты о нас</a>
+            <a href="#about" data-i18n="nav_about">О компании</a>
+            <a href="#contact" data-i18n="nav_contact">Контакты</a>
+          </div>
+
+          <div class="lang-switch">
+            <button type="button" class="lang-btn" data-lang="ru" onclick="setLang('ru')">RU</button>
+            <button type="button" class="lang-btn" data-lang="uz" onclick="setLang('uz')">UZ</button>
+            <button type="button" class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+          </div>
+        </div>
+
+        <a href="tel:+998700250507" class="nav-cta">
+          <span>✆</span>
+          <span data-i18n="nav_call">Позвонить</span>
+        </a>
+
+        <button class="burger" id="burgerBtn" aria-label="Меню">
+          <div class="burger-line"></div>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div>
+            <div class="badge" data-i18n="hero_badge">
+              <span class="badge-dot"></span>
+              Print Media · Рекламное агентство Самарканда
+            </div>
+            <h1 class="hero-title" data-i18n="hero_title">
+              Делаем бренды <span>заметными</span> — от первой вывески до сильного фасада.
+            </h1>
+            <p class="hero-sub" data-i18n="hero_sub">
+              Print Media — рекламное агентство с собственным производством в Самарканде.
+              Наружная реклама, объёмные буквы, LED-экраны, полиграфия, УФ-печать —
+              всё «с первых рук» и по честным срокам.
+            </p>
+
+            <div class="hero-cta-row">
+              <button class="btn-primary" onclick="scrollToContact()">
+                <span data-i18n="btn_request">Оставить заявку</span>
+                <span>→</span>
+              </button>
+
+              <button class="btn-secondary" onclick="scrollToServices()">
+                <span data-i18n="btn_services">Смотреть услуги</span>
+              </button>
+            </div>
+
+            <p class="hero-note" data-i18n="hero_note">
+              <strong>Работаем по всей Республике Узбекистан</strong> и с
+              соседними странами. Поможем собрать визуальный образ, который
+              работает днём и ночью.
+            </p>
+          </div>
+
+          <aside class="hero-card">
+            <div class="hero-card-tag" data-i18n="hero_card_tag">
+              Почему клиенты выбирают Print Media
+            </div>
+            <div class="hero-card-main" data-i18n="hero_card_main">
+              Дизайн + производство + монтаж в одном месте. Без посредников,
+              без лишней беготни и с нормальным человеческим общением.
+            </div>
+
+            <div class="hero-pills">
+              <div class="pill" data-i18n="pill_factory">Собственное производство</div>
+              <div class="pill" data-i18n="pill_uv">УФ-печать баннеров и оракала</div>
+              <div class="pill" data-i18n="pill_letters">Объёмные буквы и световые короба</div>
+              <div class="pill" data-i18n="pill_led">LED-экраны под ключ</div>
+              <div class="pill" data-i18n="pill_print">Полиграфия и сувенирка</div>
+            </div>
+
+            <div class="hero-meta">
+              <span data-i18n="hero_meta_1">Средний срок вывески — <strong>5–7 дней</strong></span>
+              <span data-i18n="hero_meta_2">Можно обсудить проект голосом в Telegram</span>
+            </div>
+
+            <div class="hero-float"></div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title" data-i18n="services_title">
+              Услуги <span>Print Media</span>
+            </h2>
+            <p class="section-sub" data-i18n="services_sub">
+              Ниже каждая услуга вынесена отдельным блоком: с описанием, списком работ
+              и галереей примеров. Это удобно и для клиента, и для портфолио.
+            </p>
+          </div>
+        </div>
+
+        <!-- SERVICE 1: Наружное оформление -->
+        <article class="service-block" id="service-outdoor">
+          <div class="service-layout">
+            <div>
+              <div class="service-label" data-i18n="service1_label">01 · Наружное оформление</div>
+              <h3 class="service-title" data-i18n="service1_title">Фасады, вывески и объёмные буквы</h3>
+              <p class="service-text" data-i18n="service1_text">
+                Наружная реклама — это лицо бизнеса. Мы делаем вывески, объёмные
+                буквы, световые короба и оформление фасадов так, чтобы вас было
+                видно издалека и узнавали вблизи.
+              </p>
+              <ul class="list">
+                <li class="list-item" data-i18n="service1_li1">
+                  <span class="list-bullet"></span>
+                  <span>Фасадные вывески: классические, световые, с подсветкой.</span>
+                </li>
+                <li class="list-item" data-i18n="service1_li2">
+                  <span class="list-bullet"></span>
+                  <span>Объёмные буквы из разных материалов: акрил, металл, композит.</span>
+                </li>
+                <li class="list-item" data-i18n="service1_li3">
+                  <span class="list-bullet"></span>
+                  <span>Консоли, крышные конструкции, таблички, входные группы.</span>
+                </li>
+                <li class="list-item" data-i18n="service1_li4">
+                  <span class="list-bullet"></span>
+                  <span>Оформление витрин: оракал, перфоплёнка, декоративные элементы.</span>
+                </li>
+              </ul>
+              <p class="service-highlight" data-i18n="service1_highlight">
+                <strong>Фишка Print Media:</strong> мы сразу смотрим на объект в контексте —
+                трафик, соседние вывески, освещение — чтобы вашу вывеску не «съела» улица.
+              </p>
+            </div>
+
+            <div class="service-media">
+              <div class="service-main-image">
+                <img src="img/outdoor-1.jpg" alt="Фасад с объёмными буквами Print Media" />
+                <div class="service-main-caption" data-i18n="service1_caption_main">
+                  Пример: оформление фасада с объёмными буквами и тёплой подсветкой
+                </div>
+              </div>
+
+              <div class="service-gallery">
+                <div class="service-thumb">
+                  <img src="img/outdoor-2.jpg" alt="Наружная реклама — пример работы 1" />
+                </div>
+                <div class="service-thumb">
+                  <img src="img/outdoor-3.jpg" alt="Наружная реклама — пример работы 2" />
+                </div>
+                <div class="service-thumb" data-i18n="service1_thumb_text">
+                  Можно добавить ещё фото фасадов и вывесок
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- SERVICE 2: LED-экраны -->
+        <article class="service-block" id="service-led">
+          <div class="service-layout">
+            <div class="service-media">
+              <div class="service-main-image">
+                <img src="img/led-1.jpg" alt="LED-экран в оформлении автосалона" />
+                <div class="service-main-caption" data-i18n="service2_caption_main">
+                  Пример: LED-экран с анимированным контентом для автосалона
+                </div>
+              </div>
+
+              <div class="service-gallery">
+                <div class="service-thumb">
+                  <img src="img/led-2.jpg" alt="LED-экран — пример работы 1" />
+                </div>
+                <div class="service-thumb">
+                  <img src="img/led-3.jpg" alt="LED-экран — пример работы 2" />
+                </div>
+                <div class="service-thumb" data-i18n="service2_thumb_text">
+                  Здесь можно показать LED-экраны в разных локациях
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="service-label" data-i18n="service2_label">02 · LED & конструкции</div>
+              <h3 class="service-title" data-i18n="service2_title">LED-экраны и динамическая реклама</h3>
+              <p class="service-text" data-i18n="service2_text">
+                LED-экран — это живая витрина бренда. Мы подбираем конфигурацию
+                под ваше помещение или фасад, занимаемся дизайном контента и
+                помогаем с монтажом и настройкой.
+              </p>
+              <ul class="list">
+                <li class="list-item" data-i18n="service2_li1">
+                  <span class="list-bullet"></span>
+                  <span>Выбор экрана по размеру, яркости и шагу пикселя под задачу.</span>
+                </li>
+                <li class="list-item" data-i18n="service2_li2">
+                  <span class="list-bullet"></span>
+                  <span>Создание анимированного и статичного контента под ваш бренд.</span>
+                </li>
+                <li class="list-item" data-i18n="service2_li3">
+                  <span class="list-bullet"></span>
+                  <span>Монтаж, подключение, базовая настройка и консультация по управлению.</span>
+                </li>
+                <li class="list-item" data-i18n="service2_li4">
+                  <span class="list-bullet"></span>
+                  <span>Сопровождение и обновление роликов под акции и новые предложения.</span>
+                </li>
+              </ul>
+              <p class="service-highlight" data-i18n="service2_highlight">
+                <strong>Фишка Print Media:</strong> мы думаем не только о технике, но и о
+                сценарии показа — какие офферы, в какой очередности и ритме
+                крутить, чтобы экран не просто светился, а продавал.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- SERVICE 3: Полиграфия & УФ-печать -->
+        <article class="service-block" id="service-print">
+          <div class="service-layout">
+            <div>
+              <div class="service-label" data-i18n="service3_label">03 · Полиграфия и УФ-печать</div>
+              <h3 class="service-title" data-i18n="service3_title">Сувенирка, календари, блокноты, флаеры</h3>
+              <p class="service-text" data-i18n="service3_text">
+                Всё, что клиент забирает с собой: от кружки с логотипом до
+                фирменного блокнота. Мы печатаем сами, поэтому можем играть
+                с тиражами и материалами.
+              </p>
+              <ul class="list">
+                <li class="list-item" data-i18n="service3_li1">
+                  <span class="list-bullet"></span>
+                  <span>Печать на кружках, блокнотах, ежедневниках, пакетах.</span>
+                </li>
+                <li class="list-item" data-i18n="service3_li2">
+                  <span class="list-bullet"></span>
+                  <span>Календари: настенные, настольные, квартальные, индивидуальный дизайн.</span>
+                </li>
+                <li class="list-item" data-i18n="service3_li3">
+                  <span class="list-bullet"></span>
+                  <span>Флаеры, буклеты, листовки, меню, прайс-листы.</span>
+                </li>
+                <li class="list-item" data-i18n="service3_li4">
+                  <span class="list-bullet"></span>
+                  <span>УФ-печать по разным носителям: пластик, металл, стекло и др.</span>
+                </li>
+              </ul>
+              <p class="service-highlight" data-i18n="service3_highlight">
+                <strong>Фишка Print Media:</strong> можем выдержать один визуальный стиль
+                от фасада до визитки, чтобы бренд выглядел цельно и дорого.
+              </p>
+            </div>
+
+            <div class="service-media">
+              <div class="service-main-image">
+                <img src="img/print-1.jpg" alt="Полиграфия и брендированная продукция" />
+                <div class="service-main-caption" data-i18n="service3_caption_main">
+                  Пример: фирменные блокноты, календари и печать на кружках
+                </div>
+              </div>
+
+              <div class="service-gallery">
+                <div class="service-thumb">
+                  <img src="img/print-2.jpg" alt="Полиграфия — пример работы 1" />
+                </div>
+                <div class="service-thumb">
+                  <img src="img/print-3.jpg" alt="Полиграфия — пример работы 2" />
+                </div>
+                <div class="service-thumb" data-i18n="service3_thumb_text">
+                  Сюда можно добавить фото сувенирки с логотипом клиентов
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- PORTFOLIO SMALL CASES -->
+    <section id="portfolio">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title" data-i18n="portfolio_title">
+              Ещё немного портфолио
+            </h2>
+            <p class="section-sub" data-i18n="portfolio_sub">
+              Этот блок можно использовать как мини-кейсы: по одному проекту
+              на карточку с коротким описанием задачи и результата.
+            </p>
+          </div>
+        </div>
+
+        <div class="portfolio-grid">
+          <article class="portfolio-item">
+            <div class="portfolio-type" data-i18n="portfolio1_type">КОФЕЙНЯ · ФАСАД</div>
+            <h3 class="portfolio-title" data-i18n="portfolio1_title">Оформление входной группы</h3>
+            <div class="portfolio-thumb" data-i18n="portfolio1_thumb">
+              Здесь поставить реальное фото кофейни с фасадом от Print Media
+            </div>
+            <p class="portfolio-text" data-i18n="portfolio1_text">
+              Комплексная работа: логотип, объёмные буквы, лайтбокс, меню у входа.
+              Фасад стал узнаваемым, а место — точкой притяжения.
+            </p>
+          </article>
+
+          <article class="portfolio-item">
+            <div class="portfolio-type" data-i18n="portfolio2_type">АВТОСАЛОН · LED</div>
+            <h3 class="portfolio-title" data-i18n="portfolio2_title">Динамический экран с акциями</h3>
+            <div class="portfolio-thumb" data-i18n="portfolio2_thumb">
+              Фото LED-экрана с анимированным контентом автосалона
+            </div>
+            <p class="portfolio-text" data-i18n="portfolio2_text">
+              Разработали визуальный стиль, собрали ролики под акции и новые
+              модели. Самые важные предложения всегда в кадре.
+            </p>
+          </article>
+
+          <article class="portfolio-item">
+            <div class="portfolio-type" data-i18n="portfolio3_type">УЧЕБНЫЙ ЦЕНТР · ПОЛИГРАФИЯ</div>
+            <h3 class="portfolio-title" data-i18n="portfolio3_title">Набор фирменной продукции</h3>
+            <div class="portfolio-thumb" data-i18n="portfolio3_thumb">
+              Фото блокнотов, сертификатов, ручек и бейджей с фирменным стилем
+            </div>
+            <p class="portfolio-text" data-i18n="portfolio3_text">
+              Сделали комплект: блокноты, сертификаты, бейджи, папки. Учебный
+              центр стал выглядеть структурно и организованно.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FACTS -->
+    <section id="facts">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title" data-i18n="facts_title">
+              Интересные факты о <span>Print Media</span>
+            </h2>
+            <p class="section-sub" data-i18n="facts_sub">
+              Немного цифр и живых наблюдений из нашей работы. Этот блок создаёт
+              доверие и показывает характер бренда.
+            </p>
+          </div>
+        </div>
+
+        <div class="facts-grid">
+          <article class="fact-card">
+            <div class="fact-tag" data-i18n="fact1_tag">СРОКИ</div>
+            <div class="fact-title" data-i18n="fact1_title">Вывеска «под ключ» быстрее, чем кажется</div>
+            <p data-i18n="fact1_text">
+              Средний срок вывески с нуля — от 5 до 7 рабочих дней: замер,
+              дизайн, производство, монтаж. Сложные проекты разбиваем на этапы.
+            </p>
+          </article>
+
+          <article class="fact-card">
+            <div class="fact-tag" data-i18n="fact2_tag">ПОДХОД</div>
+            <div class="fact-title" data-i18n="fact2_title">Чаще всего клиенты говорят: «Сделайте, чтобы было видно»</div>
+            <p data-i18n="fact2_text">
+              Поэтому мы смотрим на объект глазами клиента: с дороги, с остановки,
+              из машины. Задача — заметность и читаемость, а уже потом «узоры».
+            </p>
+          </article>
+
+          <article class="fact-card">
+            <div class="fact-tag" data-i18n="fact3_tag">ПРОИЗВОДСТВО</div>
+            <div class="fact-title" data-i18n="fact3_title">Собственные мощности вместо перепродажи</div>
+            <p data-i18n="fact3_text">
+              Мы не перекидываем заказы другим, а делаем сами. Это даёт контроль
+              качества и гибкость по материалам и бюджету.
+            </p>
+          </article>
+
+          <article class="fact-card">
+            <div class="fact-tag" data-i18n="fact4_tag">ДИЗАЙН</div>
+            <div class="fact-title" data-i18n="fact4_title">Любим, когда всё в одном стиле</div>
+            <p data-i18n="fact4_text">
+              Самые сильные проекты — когда фасад, меню, визитки, пакеты и
+              соцсети визуально «из одной вселенной».
+            </p>
+          </article>
+
+          <article class="fact-card">
+            <div class="fact-tag" data-i18n="fact5_tag">КОММУНИКАЦИЯ</div>
+            <div class="fact-title" data-i18n="fact5_title">Без «умных» терминов, по-человечески</div>
+            <p data-i18n="fact5_text">
+              Объясняем простым языком. Переводим «хочу красиво» в конкретные
+              размеры, материалы и сроки.
+            </p>
+          </article>
+
+          <article class="fact-card">
+            <div class="fact-tag" data-i18n="fact6_tag">ГЕОГРАФИЯ</div>
+            <div class="fact-title" data-i18n="fact6_title">Самарканд и вся республика</div>
+            <p data-i18n="fact6_text">
+              Базируемся в Самарканде, но берём проекты по всей Республике
+              Узбекистан и соседним странам.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title" data-i18n="about_title">
+              О компании Print Media
+            </h2>
+            <p class="section-sub" data-i18n="about_sub">
+              Шаблон под описание агентства с собственным производством. Можно
+              дописать сюда свою историю, миссию и ценности.
+            </p>
+          </div>
+        </div>
+
+        <div class="service-layout">
+          <div>
+            <p class="service-text" data-i18n="about_text1">
+              Print Media — это команда, которая смотрит на рекламу как на
+              систему. Мы не просто делаем вывеску «как у всех», а собираем
+              визуальный образ бренда: от логотипа до фасада и сувенирки.
+            </p>
+            <p class="service-text" data-i18n="about_text2">
+              В работе держим баланс между креативом и практикой: вывеска должна
+              выдерживать погоду, читаться с расстояния и помогать бизнесу
+              зарабатывать, а не просто быть красивой картинкой.
+            </p>
+          </div>
+
+          <div>
+            <ul class="list">
+              <li class="list-item" data-i18n="about_li1">
+                <span class="list-bullet"></span>
+                <span>Собственное производство наружной рекламы и полиграфии.</span>
+              </li>
+              <li class="list-item" data-i18n="about_li2">
+                <span class="list-bullet"></span>
+                <span>Честный диалог по бюджету и срокам без скрытых наценок.</span>
+              </li>
+              <li class="list-item" data-i18n="about_li3">
+                <span class="list-bullet"></span>
+                <span>Подбор решений под нишу: кафе, магазины, салоны красоты,
+                  автосалоны, учебные центры и др.</span>
+              </li>
+              <li class="list-item" data-i18n="about_li4">
+                <span class="list-bullet"></span>
+                <span>Полный цикл: замер, дизайн, производство, монтаж,
+                  сопровождение.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title" data-i18n="contact_title">
+              Контакты
+            </h2>
+            <p class="section-sub" data-i18n="contact_sub">
+              Можно позвонить, написать в мессенджер или оставить заявку через
+              форму — мы вернёмся с вопросами и предложим варианты по формату.
+            </p>
+          </div>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-card">
+            <div class="contact-row">
+              <strong data-i18n="contact_phone_label">Телефон / Telegram:</strong>
+              <span>+998-70-025-05-07</span>
+            </div>
+
+            <div class="contact-row">
+              <strong data-i18n="contact_address_label">Адрес офиса Print Media:</strong>
+              <span data-i18n="contact_address_value">г. Самарканд, ул. Гагарина, 155.</span>
+            </div>
+
+            <div class="contact-row">
+              <strong data-i18n="contact_hours_label">График работы:</strong>
+              <span data-i18n="contact_hours_value">Пн–Сб, 09:00 – 19:00</span>
+            </div>
+
+            <p class="form-hint" data-i18n="contact_hint">
+              Кнопка «Позвонить» в шапке сайта на мобильных устройствах сразу
+              открывает набор номера Print Media.
+            </p>
+          </div>
+
+          <div class="contact-card">
+            <form onsubmit="handleFormSubmit(event)">
+              <div>
+                <label for="name" data-i18n="form_name_label">Ваше имя</label>
+                <input id="name" name="name" type="text" placeholder="Как к вам обращаться?" required />
+              </div>
+
+              <div>
+                <label for="phone" data-i18n="form_phone_label">Телефон / Telegram</label>
+                <input id="phone" name="phone" type="tel" placeholder="+998 ..." required />
+              </div>
+
+              <div>
+                <label for="message" data-i18n="form_task_label">Задача</label>
+                <textarea id="message" name="message" rows="4" placeholder="Кратко опишите, что нужно: вывеска, фасад, LED-экран, полиграфия и т.д." required></textarea>
+              </div>
+
+              <button type="submit" class="btn-primary" style="width:100%;justify-content:center;margin-top:6px;">
+                <span data-i18n="form_btn_send">Отправить заявку</span>
+              </button>
+
+              <p class="form-hint" data-i18n="form_hint">
+                Форма пока демонстрационная. Чтобы реально получать заявки,
+                подключите обработку на сервере или сервис форм (Formspree,
+                Getform и т.п.).
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-row">
+        <div data-i18n="footer_copy">© <span id="year"></span> Print Media. Все права защищены.</div>
+        <div class="footer-links">
+          <a href="#top" data-i18n="footer_up">Вверх</a>
+          <a href="#services" data-i18n="footer_services">Услуги</a>
+          <a href="#portfolio" data-i18n="footer_portfolio">Портфолио</a>
+          <a href="#contact" data-i18n="footer_contact">Связаться</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ======= i18n словарь =======
+    const translations = {
+      ru: {
+        nav_services: "Услуги",
+        nav_portfolio: "Портфолио",
+        nav_facts: "Факты о нас",
+        nav_about: "О компании",
+        nav_contact: "Контакты",
+        nav_call: "Позвонить",
+
+        hero_badge: '<span class="badge-dot"></span>Print Media · Рекламное агентство Самарканда',
+        hero_title: 'Делаем бренды <span>заметными</span> — от первой вывески до сильного фасада.',
+        hero_sub: "Print Media — рекламное агентство с собственным производством в Самарканде. Наружная реклама, объёмные буквы, LED-экраны, полиграфия, УФ-печать — всё «с первых рук» и по честным срокам.",
+        btn_request: "Оставить заявку",
+        btn_services: "Смотреть услуги",
+        hero_note: "<strong>Работаем по всей Республике Узбекистан</strong> и с соседними странами. Поможем собрать визуальный образ, который работает днём и ночью.",
+        hero_card_tag: "Почему клиенты выбирают Print Media",
+        hero_card_main: "Дизайн + производство + монтаж в одном месте. Без посредников, без лишней беготни и с нормальным человеческим общением.",
+        pill_factory: "Собственное производство",
+        pill_uv: "УФ-печать баннеров и оракала",
+        pill_letters: "Объёмные буквы и световые короба",
+        pill_led: "LED-экраны под ключ",
+        pill_print: "Полиграфия и сувенирка",
+        hero_meta_1: "Средний срок вывески — <strong>5–7 дней</strong>",
+        hero_meta_2: "Можно обсудить проект голосом в Telegram",
+
+        services_title: "Услуги <span>Print Media</span>",
+        services_sub: "Ниже каждая услуга вынесена отдельным блоком: с описанием, списком работ и галереей примеров. Это удобно и для клиента, и для портфолио.",
+
+        service1_label: "01 · Наружное оформление",
+        service1_title: "Фасады, вывески и объёмные буквы",
+        service1_text: "Наружная реклама — это лицо бизнеса. Мы делаем вывески, объёмные буквы, световые короба и оформление фасадов так, чтобы вас было видно издалека и узнавали вблизи.",
+        service1_li1: "Фасадные вывески: классические, световые, с подсветкой.",
+        service1_li2: "Объёмные буквы из разных материалов: акрил, металл, композит.",
+        service1_li3: "Консоли, крышные конструкции, таблички, входные группы.",
+        service1_li4: "Оформление витрин: оракал, перфоплёнка, декоративные элементы.",
+        service1_highlight: "<strong>Фишка Print Media:</strong> мы сразу смотрим на объект в контексте — трафик, соседние вывески, освещение — чтобы вашу вывеску не «съела» улица.",
+        service1_caption_main: "Пример: оформление фасада с объёмными буквами и тёплой подсветкой",
+        service1_thumb_text: "Можно добавить ещё фото фасадов и вывесок",
+
+        service2_label: "02 · LED & конструкции",
+        service2_title: "LED-экраны и динамическая реклама",
+        service2_text: "LED-экран — это живая витрина бренда. Мы подбираем конфигурацию под ваше помещение или фасад, занимаемся дизайном контента и помогаем с монтажом и настройкой.",
+        service2_li1: "Выбор экрана по размеру, яркости и шагу пикселя под задачу.",
+        service2_li2: "Создание анимированного и статичного контента под ваш бренд.",
+        service2_li3: "Монтаж, подключение, базовая настройка и консультация по управлению.",
+        service2_li4: "Сопровождение и обновление роликов под акции и новые предложения.",
+        service2_highlight: "<strong>Фишка Print Media:</strong> мы думаем не только о технике, но и о сценарии показа — какие офферы, в какой очередности и ритме крутить, чтобы экран не просто светился, а продавал.",
+        service2_caption_main: "Пример: LED-экран с анимированным контентом для автосалона",
+        service2_thumb_text: "Здесь можно показать LED-экраны в разных локациях",
+
+        service3_label: "03 · Полиграфия и УФ-печать",
+        service3_title: "Сувенирка, календари, блокноты, флаеры",
+        service3_text: "Всё, что клиент забирает с собой: от кружки с логотипом до фирменного блокнота. Мы печатаем сами, поэтому можем играть с тиражами и материалами.",
+        service3_li1: "Печать на кружках, блокнотах, ежедневниках, пакетах.",
+        service3_li2: "Календари: настенные, настольные, квартальные, индивидуальный дизайн.",
+        service3_li3: "Флаеры, буклеты, листовки, меню, прайс-листы.",
+        service3_li4: "УФ-печать по разным носителям: пластик, металл, стекло и др.",
+        service3_highlight: "<strong>Фишка Print Media:</strong> можем выдержать один визуальный стиль от фасада до визитки, чтобы бренд выглядел цельно и дорого.",
+        service3_caption_main: "Пример: фирменные блокноты, календари и печать на кружках",
+        service3_thumb_text: "Сюда можно добавить фото сувенирки с логотипом клиентов",
+
+        portfolio_title: "Ещё немного портфолио",
+        portfolio_sub: "Этот блок можно использовать как мини-кейсы: по одному проекту на карточку с коротким описанием задачи и результата.",
+        portfolio1_type: "КОФЕЙНЯ · ФАСАД",
+        portfolio1_title: "Оформление входной группы",
+        portfolio1_thumb: "Здесь поставить реальное фото кофейни с фасадом от Print Media",
+        portfolio1_text: "Комплексная работа: логотип, объёмные буквы, лайтбокс, меню у входа. Фасад стал узнаваемым, а место — точкой притяжения.",
+        portfolio2_type: "АВТОСАЛОН · LED",
+        portfolio2_title: "Динамический экран с акциями",
+        portfolio2_thumb: "Фото LED-экрана с анимированным контентом автосалона",
+        portfolio2_text: "Разработали визуальный стиль, собрали ролики под акции и новые модели. Самые важные предложения всегда в кадре.",
+        portfolio3_type: "УЧЕБНЫЙ ЦЕНТР · ПОЛИГРАФИЯ",
+        portfolio3_title: "Набор фирменной продукции",
+        portfolio3_thumb: "Фото блокнотов, сертификатов, ручек и бейджей с фирменным стилем",
+        portfolio3_text: "Сделали комплект: блокноты, сертификаты, бейджи, папки. Учебный центр стал выглядеть структурно и организованно.",
+
+        facts_title: "Интересные факты о <span>Print Media</span>",
+        facts_sub: "Немного цифр и живых наблюдений из нашей работы. Этот блок создаёт доверие и показывает характер бренда.",
+        fact1_tag: "СРОКИ",
+        fact1_title: "Вывеска «под ключ» быстрее, чем кажется",
+        fact1_text: "Средний срок вывески с нуля — от 5 до 7 рабочих дней: замер, дизайн, производство, монтаж. Сложные проекты разбиваем на этапы.",
+        fact2_tag: "ПОДХОД",
+        fact2_title: "Чаще всего клиенты говорят: «Сделайте, чтобы было видно»",
+        fact2_text: "Поэтому мы смотрим на объект глазами клиента: с дороги, с остановки, из машины. Задача — заметность и читаемость, а уже потом «узоры».",
+        fact3_tag: "ПРОИЗВОДСТВО",
+        fact3_title: "Собственные мощности вместо перепродажи",
+        fact3_text: "Мы не перекидываем заказы другим, а делаем сами. Это даёт контроль качества и гибкость по материалам и бюджету.",
+        fact4_tag: "ДИЗАЙН",
+        fact4_title: "Любим, когда всё в одном стиле",
+        fact4_text: "Самые сильные проекты — когда фасад, меню, визитки, пакеты и соцсети визуально «из одной вселенной».",
+        fact5_tag: "КОММУНИКАЦИЯ",
+        fact5_title: "Без «умных» терминов, по-человечески",
+        fact5_text: "Объясняем простым языком. Переводим «хочу красиво» в конкретные размеры, материалы и сроки.",
+        fact6_tag: "ГЕОГРАФИЯ",
+        fact6_title: "Самарканд и вся республика",
+        fact6_text: "Базируемся в Самарканде, но берём проекты по всей Республике Узбекистан и соседним странам.",
+
+        about_title: "О компании Print Media",
+        about_sub: "Шаблон под описание агентства с собственным производством. Можно дописать сюда свою историю, миссию и ценности.",
+        about_text1: "Print Media — это команда, которая смотрит на рекламу как на систему. Мы не просто делаем вывеску «как у всех», а собираем визуальный образ бренда: от логотипа до фасада и сувенирки.",
+        about_text2: "В работе держим баланс между креативом и практикой: вывеска должна выдерживать погоду, читаться с расстояния и помогать бизнесу зарабатывать, а не просто быть красивой картинкой.",
+        about_li1: "Собственное производство наружной рекламы и полиграфии.",
+        about_li2: "Честный диалог по бюджету и срокам без скрытых наценок.",
+        about_li3: "Подбор решений под нишу: кафе, магазины, салоны красоты, автосалоны, учебные центры и др.",
+        about_li4: "Полный цикл: замер, дизайн, производство, монтаж, сопровождение.",
+
+        contact_title: "Контакты",
+        contact_sub: "Можно позвонить, написать в мессенджер или оставить заявку через форму — мы вернёмся с вопросами и предложим варианты по формату.",
+        contact_phone_label: "Телефон / Telegram:",
+        contact_address_label: "Адрес офиса Print Media:",
+        contact_address_value: "г. Самарканд, ул. Гагарина, 155.",
+        contact_hours_label: "График работы:",
+        contact_hours_value: "Пн–Сб, 09:00 – 19:00",
+        contact_hint: "Кнопка «Позвонить» в шапке сайта на мобильных устройствах сразу открывает набор номера Print Media.",
+        form_name_label: "Ваше имя",
+        form_phone_label: "Телефон / Telegram",
+        form_task_label: "Задача",
+        form_btn_send: "Отправить заявку",
+        form_hint: "Форма пока демонстрационная. Чтобы реально получать заявки, подключите обработку на сервере или сервис форм (Formspree, Getform и т.п.).",
+
+        footer_copy: "© <span id=\"year\"></span> Print Media. Все права защищены.",
+        footer_up: "Вверх",
+        footer_services: "Услуги",
+        footer_portfolio: "Портфолио",
+        footer_contact: "Связаться"
+      },
+
+      uz: {
+        nav_services: "Xizmatlar",
+        nav_portfolio: "Portfel",
+        nav_facts: "Biz haqimizda",
+        nav_about: "Kompaniya",
+        nav_contact: "Aloqa",
+        nav_call: "Qo‘ng‘iroq",
+
+        hero_badge: '<span class="badge-dot"></span>Print Media · Samarqanddagi reklama agentligi',
+        hero_title: "Brendlarni <span>ko‘rinadigan</span> qilamiz — birinchi vyivskadan kuchli fasadgacha.",
+        hero_sub: "Print Media — Samarqand shahrida o‘z ishlab chiqarishiga ega reklama agentligi. Tashqi reklama, hajmli harflar, LED-ekranlar, poligrafiya va UV-bosma — barchasi bevosita bizdan.",
+        btn_request: "Buyurtma qoldirish",
+        btn_services: "Xizmatlarni ko‘rish",
+        hero_note: "<strong>Butun O‘zbekiston bo‘ylab</strong> va qo‘shni davlatlar bilan ishlaymiz. Kunduzi ham, kechasi ham ishlaydigan vizual obraz yig‘ib beramiz.",
+        hero_card_tag: "Nega mijozlar Print Media’ni tanlaydi",
+        hero_card_main: "Dizayn + ishlab chiqarish + montaj bir joyda. Oraliq vositachilarsiz va ortiqcha gap-so‘zlarsiz.",
+        pill_factory: "O‘z ishlab chiqarishimiz",
+        pill_uv: "Banner va orakalga UV-bosma",
+        pill_letters: "Hajmli harflar va lightboxlar",
+        pill_led: "LED-ekranlar kalit topshirish",
+        pill_print: "Poligrafiya va suvenirlar",
+        hero_meta_1: "Vyivska o‘rtacha muddati — <strong>5–7 kun</strong>",
+        hero_meta_2: "Loyihani Telegram orqali ovozda muhokama qilish mumkin",
+
+        services_title: "Print Media <span>xizmatlari</span>",
+        services_sub: "Har bir yo‘nalish alohida blokda: tavsif, ish turlari va misol sifatida rasmlar. Mijoz uchun ham, agentlik portfeli uchun ham qulay.",
+
+        service1_label: "01 · Tashqi bezak",
+        service1_title: "Fasadlar, vyivskalar va hajmli harflar",
+        service1_text: "Tashqi reklama — biznesning yuzi. Biz vyivskalar, hajmli harflar, lightboxlar va fasad bezagini uzoqdan ham, yaqin masofadan ham o‘qiladigan qilib tayyorlaymiz.",
+        service1_li1: "Fasad vyivskalar: klassik, yoritimli, orqa yoritishli.",
+        service1_li2: "Turli materiallardan hajmli harflar: akril, metall, kompozit.",
+        service1_li3: "Konsollar, tom konstruksiyalari, tablochka va kirish zonalari.",
+        service1_li4: "Vitrinalarni bezash: orakal, perforatsiya plyonka va dekor elementlar.",
+        service1_highlight: "<strong>Print Media’ning plusi:</strong> obyektga konteksda qaraymiz — oqim, qo‘shni vyivskalar, yorug‘lik — shunda sizning vyivskangiz ko‘rinmay qolib ketmaydi.",
+        service1_caption_main: "Misol: hajmli harflar va iliq yoritish bilan fasad bezagi",
+        service1_thumb_text: "Bu yerga fasad va vyivskalar rasmlarini ko‘proq qo‘shish mumkin",
+
+        service2_label: "02 · LED va konstruksiyalar",
+        service2_title: "LED-ekranlar va dinamik reklama",
+        service2_text: "LED-ekran — brendning jonli vitrinasidir. Joyingiz va fasadingiz uchun mos konfiguratsiyani tanlaymiz, kontent dizaynini qilamiz va montaj hamda sozlashda yordam beramiz.",
+        service2_li1: "Vazifaga qarab o‘lcham, yorug‘lik va piksel qadamiga ko‘ra ekran tanlash.",
+        service2_li2: "Brendingiz stilida animatsion va statik roliklar tayyorlash.",
+        service2_li3: "Montaj, ulash, dastlabki sozlash va boshqaruv bo‘yicha yo‘riqnoma.",
+        service2_li4: "Aksiya va yangi takliflar uchun roliklarni yangilab borish.",
+        service2_highlight: "<strong>Print Media’ning plusi:</strong> faqat texnika haqida emas, namoyish ssenariysi haqida ham o‘ylaymiz — qaysi takliflar, qanday ketma-ketlikda va ritmda ketishi kerakligini o‘ylab chiqamiz.",
+        service2_caption_main: "Misol: avtosalon uchun animatsiyali LED-ekran",
+        service2_thumb_text: "Bu yerga turli joylardagi LED-ekranlar rasmlarini qo‘yish mumkin",
+
+        service3_label: "03 · Poligrafiya va UV-bosma",
+        service3_title: "Suvenirlar, kalendarlar, bloknotlar, fleyerlar",
+        service3_text: "Mijoz o‘zi bilan olib ketadigan hamma narsa: logotipli krujkadan tortib, firmavoy bloknotgacha. O‘zimiza bosamiz, shuning uchun tiraj va materiallar bilan erkin ishlaymiz.",
+        service3_li1: "Krujka, bloknot, kundalik va paketlarga bosma.",
+        service3_li2: "Kalendarlar: devoriy, stol usti, kvartal va individual dizayn.",
+        service3_li3: "Fleyerlar, bukletlar, listovkalar, menyular, прайс-лиstlar.",
+        service3_li4: "Turli asoslarda UV-bosma: plastik, metall, shisha va boshqalar.",
+        service3_highlight: "<strong>Print Media’ning plusi:</strong> fasaddan vizitkagacha bir xil vizual stylda ushlab turishimiz mumkin, shuning uchun brend yaxlit va qimmat ko‘rinadi.",
+        service3_caption_main: "Misol: firmavoy bloknotlar, kalendarlar va krujkalar",
+        service3_thumb_text: "Bu joyga mijoz logotipi tushirilgan suvenirlar rasmlarini qo‘shish mumkin",
+
+        portfolio_title: "Yana portfel ishlaridan",
+        portfolio_sub: "Bu blokni mini-keýslar uchun ishlatish mumkin: har bir kartochkada vazifa va natija qisqacha yoziladi.",
+        portfolio1_type: "QAHVAXONA · FASAD",
+        portfolio1_title: "Kirish qismni bezash",
+        portfolio1_thumb: "Bu yerga Print Media bezagan qahvaxona fasadi fotosini qo‘ying",
+        portfolio1_text: "Kompеks ish: logotip, hajmli harflar, lightbox, kirishdagi menyu. Fasad taniladigan bo‘ldi, joy esa diqqat markazi.",
+        portfolio2_type: "AVTOSALON · LED",
+        portfolio2_title: "Aksiyalar uchun dinamik ekran",
+        portfolio2_thumb: "Avtosalon uchun animatsion kontentli LED-ekran fotosi",
+        portfolio2_text: "Vizual stil ishlab chiqdik, aksiyalar va yangi modellarga mos roliklar tayyorladik. Muhim takliflar doim kadarda.",
+        portfolio3_type: "O‘QUV MARKAZI · POLIGRAFIYA",
+        portfolio3_title: "Firmavoy mahsulotlar to‘plami",
+        portfolio3_thumb: "Bloknot, sertifikat, ruchka va beydjlar fotosi",
+        portfolio3_text: "Bloknot, sertifikat, beydjik va papkalar to‘plamini qildik. O‘quv markazi tartibli va professionаl ko‘rina boshladi.",
+
+        facts_title: "Print Media <span>haqida faktlar</span>",
+        facts_sub: "Ishimizdan ozgina raqamlar va kuzatuvlar. Bu blok ishonchni oshiradi va brend xarakterini ko‘rsatadi.",
+        fact1_tag: "MUDDATLAR",
+        fact1_title: "«Kalit topshirish» vyivska o‘ylagandan tezroq",
+        fact1_text: "Noldan boshlab vyivska o‘rtacha 5–7 ish kunida tayyor bo‘ladi: o‘lchash, dizayn, ishlab chiqarish, montaj.",
+        fact2_tag: "YONDASHUV",
+        fact2_title: "Mijozlar eng ko‘p shuni aytishadi: «Ko‘rinadigan qiling»",
+        fact2_text: "Shuning uchun obyektga mijoz ko‘zi bilan qaraymiz: yo‘ldan, bekatdan, mashinadan. Vazifa — ko‘rinish va o‘qilishi.",
+        fact3_tag: "ISHLAB CHIQARISH",
+        fact3_title: "O‘z quvvatlarımız, qayta sotuv emas",
+        fact3_text: "Buyurtmalarni boshqa joyga yubormaymiz, o‘zimiz qilamiz. Bu sifat va narx bo‘yicha moslashuvchanlik beradi.",
+        fact4_tag: "DIZAYN",
+        fact4_title: "Hammasi bir stylda bo‘lganini yaxshi ko‘ramiz",
+        fact4_text: "Eng kuchli loyihalar — fasad, menyu, vizitka, paket va ijtimoiy tarmoqlar bir xil vizual olamda bo‘lganda.",
+        fact5_tag: "ALOQA",
+        fact5_title: "Keraksiz terminlarsiz, sodda tilda",
+        fact5_text: "Oddiy tilda tushuntiramiz. «Chiroyli bo‘lsin» deganni aniq o‘lchamlar, material va muddatlarga tarjima qilamiz.",
+        fact6_tag: "GEOGRAFIYA",
+        fact6_title: "Samarqand va butun respublika",
+        fact6_text: "Samarqandda joylashganmiz, lekin butun O‘zbekiston bo‘ylab va qo‘shni davlatlar bilan ishlaymiz.",
+
+        about_title: "Print Media haqida",
+        about_sub: "O‘z ishlab chiqarishiga ega agentlik uchun tavsif shabloni. Bu yerga tarix, missiya va qadriyatlarni qo‘shishingiz mumkin.",
+        about_text1: "Print Media — reklama tizim sifatida qaraladigan jamoa. Biz oddiy «hamma qilib yurgani» vyivskani emas, brendning vizual obrazini yig‘amiz.",
+        about_text2: "Ishda kreativ va amaliyotni muvozanatlaymiz: vyivska ob-havoga chidashi, masofadan o‘qilishi va biznesga pul olib kelishi kerak.",
+        about_li1: "Tashqi reklama va poligrafiyaning o‘z ishlab chiqarishi.",
+        about_li2: "Byudjet va muddatlar bo‘yicha ochiq muloqot, yashirin ustamalarsiz.",
+        about_li3: "Kafe, do‘kon, go‘zallik salonlari, avtosalon, o‘quv markazlari va boshqalar uchun yechimlar.",
+        about_li4: "To‘liq sikl: o‘lchash, dizayn, ishlab chiqarish, montaj va kuzatuv.",
+
+        contact_title: "Aloqa",
+        contact_sub: "Qo‘ng‘iroq qilishingiz, messenjerga yozishingiz yoki shakl orqali so‘rov qoldirishingiz mumkin — savollar beramiz va format bo‘yicha variantlarni taklif qilamiz.",
+        contact_phone_label: "Telefon / Telegram:",
+        contact_address_label: "Print Media ofis manzili:",
+        contact_address_value: "Samarqand shahri, Gagarin ko‘chasi, 155-uy.",
+        contact_hours_label: "Ish vaqti:",
+        contact_hours_value: "Du–Sha, 09:00 – 19:00",
+        contact_hint: "Saytning yuqori qismidagi «Qo‘ng‘iroq» tugmasi telefonlarda darhol raqam terishni ochadi.",
+        form_name_label: "Ismingiz",
+        form_phone_label: "Telefon / Telegram",
+        form_task_label: "Vazifa",
+        form_btn_send: "So‘rov jo‘natish",
+        form_hint: "Hozircha shakl demo. Real so‘rovlar uchun server tomoni yoki form xizmatlaridan foydalaning (Formspree, Getform va boshqalar).",
+
+        footer_copy: "© <span id=\"year\"></span> Print Media. Barcha huquqlar himoyalangan.",
+        footer_up: "Yuqoriga",
+        footer_services: "Xizmatlar",
+        footer_portfolio: "Portfel",
+        footer_contact: "Bog‘lanish"
+      },
+
+      en: {
+        nav_services: "Services",
+        nav_portfolio: "Portfolio",
+        nav_facts: "Facts",
+        nav_about: "About",
+        nav_contact: "Contacts",
+        nav_call: "Call",
+
+        hero_badge: '<span class="badge-dot"></span>Print Media · Advertising agency in Samarkand',
+        hero_title: "We make brands <span>visible</span> — from the first sign to a strong facade.",
+        hero_sub: "Print Media is an advertising agency with its own production in Samarkand. Outdoor ads, 3D letters, LED screens, printing and UV print — all directly from us, no middlemen.",
+        btn_request: "Send request",
+        btn_services: "View services",
+        hero_note: "<strong>We work all across Uzbekistan</strong> and with neighboring countries. We build a visual identity that works day and night.",
+        hero_card_tag: "Why clients choose Print Media",
+        hero_card_main: "Design + production + installation in one place. No middlemen, no extra hassle — just clear communication.",
+        pill_factory: "In-house production",
+        pill_uv: "UV print for banners & vinyl",
+        pill_letters: "3D letters & lightboxes",
+        pill_led: "LED screens turnkey",
+        pill_print: "Printing & merch",
+        hero_meta_1: "Average production time for a sign — <strong>5–7 days</strong>",
+        hero_meta_2: "We can discuss the project via voice in Telegram",
+
+        services_title: "Print Media <span>services</span>",
+        services_sub: "Each service is in a separate block with description, list of work and gallery. It’s convenient both for clients and for your portfolio.",
+
+        service1_label: "01 · Outdoor branding",
+        service1_title: "Facades, signs and 3D letters",
+        service1_text: "Outdoor advertising is the face of your business. We create signs, 3D letters, lightboxes and facade branding so you’re visible from afar and recognizable up close.",
+        service1_li1: "Facade signs: classic, illuminated and backlit.",
+        service1_li2: "3D letters from different materials: acrylic, metal, composite.",
+        service1_li3: "Consoles, roof structures, plates and entrance groups.",
+        service1_li4: "Window branding: vinyl, perforated film and decor elements.",
+        service1_highlight: "<strong>Print Media’s edge:</strong> we always look at context — traffic, neighboring signs, lighting — so your sign doesn’t get lost in the street.",
+        service1_caption_main: "Example: facade branding with 3D letters and warm lighting",
+        service1_thumb_text: "You can add more photos of facades and signs here",
+
+        service2_label: "02 · LED & structures",
+        service2_title: "LED screens and dynamic ads",
+        service2_text: "A LED screen is a living showcase of your brand. We choose the right configuration for your facade or interior, design the content and help with installation and setup.",
+        service2_li1: "Choosing the screen by size, brightness and pixel pitch for your goals.",
+        service2_li2: "Creating animated and static content in your brand style.",
+        service2_li3: "Installation, wiring, basic setup and training on how to manage it.",
+        service2_li4: "Ongoing support and updating content for promos and new offers.",
+        service2_highlight: "<strong>Print Media’s edge:</strong> we think not only about the hardware but about the content scenario — which offers, in what order and rhythm, so the screen actually sells.",
+        service2_caption_main: "Example: LED screen with animated content for a car showroom",
+        service2_thumb_text: "Here you can show LED screens in different locations",
+
+        service3_label: "03 · Printing & UV",
+        service3_title: "Merch, calendars, notebooks, flyers",
+        service3_text: "Everything your client takes with them: from a branded mug to a notebook. We print in-house, so we’re flexible with runs and materials.",
+        service3_li1: "Print on mugs, notebooks, planners and bags.",
+        service3_li2: "Calendars: wall, desk, quarterly and custom design.",
+        service3_li3: "Flyers, brochures, leaflets, menus and price lists.",
+        service3_li4: "UV print on various materials: plastic, metal, glass and more.",
+        service3_highlight: "<strong>Print Media’s edge:</strong> we can keep one visual style from facade to business card, so the brand looks consistent and premium.",
+        service3_caption_main: "Example: branded notebooks, calendars and mugs",
+        service3_thumb_text: "Use this spot for photos of branded merchandise",
+
+        portfolio_title: "More portfolio projects",
+        portfolio_sub: "This block works great for mini case studies: one project per card with a short description of the task and result.",
+        portfolio1_type: "COFFEE SHOP · FACADE",
+        portfolio1_title: "Entrance group branding",
+        portfolio1_thumb: "Place a real photo of a coffee shop facade created by Print Media here",
+        portfolio1_text: "Full scope: logo, 3D letters, lightbox and menu at the entrance. The facade became recognizable and the place — a point of attraction.",
+        portfolio2_type: "CAR DEALER · LED",
+        portfolio2_title: "Dynamic screen for promotions",
+        portfolio2_thumb: "Photo of a LED screen with animated content in a car showroom",
+        portfolio2_text: "We developed the visual style, built promos and model highlights into the content. Key offers are always on screen.",
+        portfolio3_type: "TRAINING CENTER · PRINT",
+        portfolio3_title: "Set of branded materials",
+        portfolio3_thumb: "Photo of notebooks, certificates, pens and badges in one style",
+        portfolio3_text: "We made a kit: notebooks, certificates, badges and folders. The training center started looking structured and professional.",
+
+        facts_title: "Interesting facts about <span>Print Media</span>",
+        facts_sub: "A few numbers and live observations from our work. This builds trust and shows the character of the brand.",
+        fact1_tag: "DEADLINES",
+        fact1_title: "A turnkey sign is faster than you think",
+        fact1_text: "Average time from zero to finished sign is 5–7 working days: measuring, design, production and installation.",
+        fact2_tag: "APPROACH",
+        fact2_title: "The most common request is: “Make it visible”",
+        fact2_text: "So we look at your place with a client’s eyes: from the road, bus stop and car. The goal is visibility and readability.",
+        fact3_tag: "PRODUCTION",
+        fact3_title: "In-house production instead of reselling",
+        fact3_text: "We don’t forward your orders to someone else — we produce them ourselves. This gives control over quality and pricing.",
+        fact4_tag: "DESIGN",
+        fact4_title: "We love when everything is in one style",
+        fact4_text: "The strongest projects are when the facade, menu, business cards, bags and social media live in the same visual universe.",
+        fact5_tag: "COMMUNICATION",
+        fact5_title: "No buzzwords, just normal language",
+        fact5_text: "We explain things simply and translate “I want it to look cool” into specific sizes, materials and deadlines.",
+        fact6_tag: "GEOGRAPHY",
+        fact6_title: "Samarkand and beyond",
+        fact6_text: "We’re based in Samarkand but work all across Uzbekistan and with neighboring countries.",
+
+        about_title: "About Print Media",
+        about_sub: "A description template for an agency with its own production. You can extend it with your story, mission and values.",
+        about_text1: "Print Media is a team that treats advertising as a system. We don’t just make a generic sign — we build the brand’s visual identity.",
+        about_text2: "We balance creativity and practicality: a sign must survive the weather, be readable from a distance and help the business earn money.",
+        about_li1: "In-house production for outdoor ads and printing.",
+        about_li2: "Transparent talk about budget and deadlines — no hidden markups.",
+        about_li3: "Solutions for cafes, shops, beauty salons, car dealers, training centers and more.",
+        about_li4: "Full cycle: measuring, design, production, installation and support.",
+
+        contact_title: "Contacts",
+        contact_sub: "You can call, text us in messengers or submit a request via the form — we’ll ask clarifying questions and suggest format options.",
+        contact_phone_label: "Phone / Telegram:",
+        contact_address_label: "Print Media office address:",
+        contact_address_value: "Samarkand, Gagarin street, 155.",
+        contact_hours_label: "Working hours:",
+        contact_hours_value: "Mon–Sat, 09:00 – 19:00",
+        contact_hint: "On mobile, the “Call” button in the header immediately opens the dialer with our number.",
+        form_name_label: "Your name",
+        form_phone_label: "Phone / Telegram",
+        form_task_label: "Project",
+        form_btn_send: "Send request",
+        form_hint: "The form is demo for now. To receive real requests, connect a backend or form service (Formspree, Getform, etc.).",
+
+        footer_copy: "© <span id=\"year\"></span> Print Media. All rights reserved.",
+        footer_up: "Back to top",
+        footer_services: "Services",
+        footer_portfolio: "Portfolio",
+        footer_contact: "Contact"
+      }
+    };
+
+    function setLang(lang) {
+      const dict = translations[lang];
+      if (!dict) return;
+
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        if (dict[key]) {
+          el.innerHTML = dict[key];
+        }
+      });
+
+      // активное состояние кнопки языка
+      document.querySelectorAll(".lang-btn").forEach(btn => {
+        btn.classList.toggle("active", btn.getAttribute("data-lang") === lang);
+      });
+
+      localStorage.setItem("lang", lang);
+    }
+
+    // мобильное меню
+    const burger = document.getElementById("burgerBtn");
+    const navLinks = document.getElementById("navLinks");
+
+    if (burger) {
+      burger.addEventListener("click", () => {
+        navLinks.classList.toggle("show");
+      });
+    }
+
+    function smoothScrollTo(selector) {
+      const el = document.querySelector(selector);
+      if (!el) return;
+      const y = el.getBoundingClientRect().top + window.pageYOffset - 70;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }
+
+    function scrollToContact() {
+      smoothScrollTo("#contact");
+    }
+
+    function scrollToServices() {
+      smoothScrollTo("#services");
+    }
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      alert("Форма сейчас демонстрационная. Подключи обработку заявок на сервере или через сервис форм.");
+    }
+
+    // Инициализация языка при загрузке
+    const savedLang = localStorage.getItem("lang") || "ru";
+    setLang(savedLang);
+  </script>
+</body>
+</html>
